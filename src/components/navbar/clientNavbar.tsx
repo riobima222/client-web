@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MouseEventHandler, useRef, useState } from "react";
+import { useState } from "react";
 
 const ClientNavbar = ({
   scroll,
@@ -122,7 +122,7 @@ const ClientNavbar = ({
           } absolute transition-all duration-300 left-[-39.5px] top-[40px] pt-1 flex px-3 justify-center items-start h-[3em] w-[8em] z-10 bg-[#990000] text-sm text-white`}
         >
           <Link
-            href="/"
+            href="/auth/login"
             className="bg-white text-[#990000] font-bold w-full tracking-wider rounded-md px-2 py-1 hover:scale-90 transition duration-200"
           >
             Admin
