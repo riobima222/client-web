@@ -7,7 +7,7 @@ const Book = () => {
 
   return (
     <div
-      className="relative w-56 h-72 perspective-1000 rounded-md"
+      className="relative w-[10rem] h-[14rem] sm:w-56 sm:h-72 perspective-1000 rounded-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

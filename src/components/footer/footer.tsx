@@ -8,11 +8,11 @@ interface FooterProps {
   kontakRef: React.RefObject<HTMLDivElement>;
 }
 
-const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }) => {
+const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }, ref) => {
   return (
     <div ref={kontakRef} className="--FOOTER-- mt-10 px-4 mb-5">
-      <div className="--CONTENT-- flex justify-between border-2 border-[#990000] rounded-md p-4">
-        <div className="--LEFT-- w-[55%] flex items-center">
+      <div className="--CONTENT-- flex flex-col md:flex-row justify-between border-2 border-[#990000] rounded-md p-4">
+        <div className="--LEFT-- w-full md:w-[55%] flex order-2 md:order-1 items-center">
           <div className="--LEFT CONTENT-- flex flex-col gap-5">
             <AnimatedGradientHeading />
             <div className="--KONTAK-- ms-2">
@@ -45,7 +45,8 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }) => {
             </div>
           </div>
         </div>
-        <div className="--RIGHT-- w-[38%] bg-[#990000] p-3 flex flex-col justify-center items-center text-white">
+
+        <div className="--RIGHT-- w-full md:w-[38%] bg-[#990000] p-3 flex flex-col order-1 md:order-2 mb-5 md:mb-0 justify-center items-center text-white">
           <h1 className="mb-3 text-2xl font-bold">Ada pertanyaan ?</h1>
           <form className="--FORM-- max-w-[20em] w-full flex flex-col gap-1">
             <Input name="email" type="email" placeholder="masukan email kamu" />

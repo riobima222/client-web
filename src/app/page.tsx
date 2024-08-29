@@ -22,8 +22,8 @@ export default function Home() {
   };
 
   return (
-    <main className="">
-      <div className="--SECTION 1-- h-screen">
+    <main className="overflow-x-hidden">
+      <div className="--SECTION 1-- md:h-screen">
         <Navbar scroll={{ scrollToDaftarBuku, scrollToKontak }} />
         <Hero />
       </div>
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
 
         <div className="--BOOK CONTENT--  min-h-[20em] flex justify-center mt-9">
-          <div className="max-w-[65em] w-full flex justify-center flex-wrap gap-5">
+          <div className="max-w-[65em] w-full flex justify-center flex-wrap gap-2 sm:gap-5">
             <Book />
             <Book />
             <Book />
