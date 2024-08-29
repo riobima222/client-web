@@ -1,0 +1,78 @@
+import { MdOutlineMail } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import AnimatedGradientHeading from "./animatedGradientHeadingt";
+import { Input } from "./input";
+import { forwardRef, RefObject } from "react";
+
+interface FooterProps {
+  kontakRef: React.RefObject<HTMLDivElement>;
+}
+
+const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }) => {
+  return (
+    <div ref={kontakRef} className="--FOOTER-- mt-10 px-4 mb-5">
+      <div className="--CONTENT-- flex justify-between border-2 border-[#990000] rounded-md p-4">
+        <div className="--LEFT-- w-[55%] flex items-center">
+          <div className="--LEFT CONTENT-- flex flex-col gap-5">
+            <AnimatedGradientHeading />
+            <div className="--KONTAK-- ms-2">
+              <h4>
+                <strong>Kontak:</strong>{" "}
+              </h4>
+              <div className="--EMAIL-- flex items-center justify-start gap-3">
+                <div>
+                  <MdOutlineMail className="text-[#990000] text-xl" />
+                </div>
+                <span>Example@gmail.com</span>
+              </div>
+              <div className="--WHATSAPP-- flex items-center justify-start gap-3">
+                <div>
+                  <FaWhatsapp className="text-[#990000] text-xl" />
+                </div>
+                <span>+62 8123456789</span>
+              </div>
+            </div>
+
+            <div className="--ALAMAT-- ms-2">
+              <h4>
+                <strong>Alamat:</strong>
+              </h4>
+              <p>
+                Lembaga Penelitian Lemlit Universitas Islam Internasional
+                Darullughah Wadda wah UII Dalwa 31 Raya Raci No. 51 PO BOX &
+                Bangil Pasuruan Jawa Timur
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="--RIGHT-- w-[38%] bg-[#990000] p-3 flex flex-col justify-center items-center text-white">
+          <h1 className="mb-3 text-2xl font-bold">Ada pertanyaan ?</h1>
+          <form className="--FORM-- max-w-[20em] w-full flex flex-col gap-1">
+            <Input name="email" type="email" placeholder="masukan email kamu" />
+            <span>Atau</span>
+            <Input
+              name="noHP"
+              type="text"
+              placeholder="masukan nomer hp kamu"
+            />
+            <textarea
+              name="pesan"
+              placeholder="Apa pertanyaan kamu ?"
+              className="text-sm py-3 px-4 w-full text-black rounded-lg focus:outline-none h-[8em]"
+            ></textarea>
+            <button
+              type="button"
+              className="transition duration-200 bg-[#990000] text-white border-[1px] border-white font-bold px-3 py-1 rounded-md hover:bg-white hover:text-[#990000]"
+            >
+              kirim
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+Footer.displayName = "Footer";
+
+export default Footer;
