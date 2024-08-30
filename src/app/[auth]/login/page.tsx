@@ -17,7 +17,7 @@ const LoginPage = () => {
         />
         <h1 className="text-4xl font-bold text-white mb-9">Login</h1>
 
-        <form className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center">
+        <form className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2">
           <div className="--INPUT 1-- w-full flex items-center justify-center gap-3">
             <div className="--ICON-- text-white">
               <CgProfile className="text-lg" />
@@ -51,7 +51,7 @@ const LoginPage = () => {
           {"Don't have any account ? register"}{" "}
           <Link
             href="/auth/register"
-            className="text-gray-800 underline hover:no-underline"
+            className="text-gray-800 underline hover:no-underline font-bold"
           >
             here
           </Link>
