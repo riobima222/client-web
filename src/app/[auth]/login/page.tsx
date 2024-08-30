@@ -1,11 +1,20 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
+import { FormEvent } from "react";
 
 // ICONS
 import { GiPadlock } from "react-icons/gi";
 import { MdOutlineMailOutline } from "react-icons/md";
 
 const LoginPage = () => {
+
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+  }
+
   return (
     <div className="min-h-screen flex justify-center items-center px-3">
       <div className="max-w-[30em] w-full py-7 rounded-xl bg-gradient-to-b from-[#990000] via-red-800 to-red-600 flex flex-col justify-center items-center">
@@ -17,7 +26,7 @@ const LoginPage = () => {
         />
         <h1 className="text-4xl font-bold text-white mb-9">Login</h1>
 
-        <form className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2">
+        <form onSubmit={(e) => handleLogin(e)} className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2">
           <div className="--INPUT 1-- w-full flex items-center justify-center gap-3">
             <div className="--ICON-- text-white">
               <MdOutlineMailOutline className="text-lg" />
@@ -40,7 +49,7 @@ const LoginPage = () => {
             />
           </div>
           <button
-            type="button"
+            type="submit"
             className="px-4 py-2 bg-white text-[#990000] rounded-md font-bold tracking-wider transition-all duration-300 focus:scale-75"
           >
             Login

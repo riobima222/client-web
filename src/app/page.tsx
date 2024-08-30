@@ -1,4 +1,5 @@
 "use client";
+
 import Footer from "@/components/footer/footer";
 import Book from "@/components/homepage/book";
 import Hero from "@/components/homepage/hero";
