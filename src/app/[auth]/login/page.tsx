@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 // ICONS
-import { CgProfile } from "react-icons/cg";
 import { GiPadlock } from "react-icons/gi";
+import { MdOutlineMailOutline } from "react-icons/md";
 
 const LoginPage = () => {
   return (
@@ -20,7 +20,7 @@ const LoginPage = () => {
         <form className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2">
           <div className="--INPUT 1-- w-full flex items-center justify-center gap-3">
             <div className="--ICON-- text-white">
-              <CgProfile className="text-lg" />
+              <MdOutlineMailOutline className="text-lg" />
             </div>
             <input
               type="email"
