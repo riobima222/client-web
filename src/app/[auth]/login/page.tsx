@@ -1,19 +1,56 @@
-"use client"
+"use client";
 
+import AlertFailed from "@/components/every/alertFailed";
+import AlertSuccess from "@/components/every/alertSuccess";
+import Loading from "@/components/every/loading";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 
 // ICONS
 import { GiPadlock } from "react-icons/gi";
 import { MdOutlineMailOutline } from "react-icons/md";
 
 const LoginPage = () => {
+  const [alertS, setAlertS] = useState(false);
+  const [alertF, setAlertF] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<any>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
 
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-  }
+    setIsLoading(true);
+    const form = e.target as HTMLFormElement;
+    const response = await signIn("credentials", {
+      email: form.email.value,
+      password: form.password.value,
+      redirect: false,
+    });
+    console.log(response);
+    if (response?.ok) {
+      setAlertS(true);
+      setAlertMessage("berhasil login");
+      setTimeout(() => {
+        setAlertS(false);
+        push("/");
+      }, 2500);
+    } else {
+      setAlertF(true);
+      setAlertMessage(response?.error);
+      setTimeout(() => {
+        setAlertF(false);
+      }, 3000);
+    }
+    setIsLoading(false);
+    setTimeout(() => {
+      setAlertMessage("");
+    }, 3000);
+    form.reset();
+    form.email.focus();
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center px-3">
@@ -26,7 +63,10 @@ const LoginPage = () => {
         />
         <h1 className="text-4xl font-bold text-white mb-9">Login</h1>
 
-        <form onSubmit={(e) => handleLogin(e)} className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2">
+        <form
+          onSubmit={(e) => handleLogin(e)}
+          className="max-w-[24em] w-full flex flex-col gap-8 items-center justify-center px-2"
+        >
           <div className="--INPUT 1-- w-full flex items-center justify-center gap-3">
             <div className="--ICON-- text-white">
               <MdOutlineMailOutline className="text-lg" />
@@ -34,6 +74,7 @@ const LoginPage = () => {
             <input
               type="email"
               placeholder="email"
+              name="email"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
           </div>
@@ -45,15 +86,20 @@ const LoginPage = () => {
             <input
               type="password"
               placeholder="password"
+              name="password"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
           </div>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-white text-[#990000] rounded-md font-bold tracking-wider transition-all duration-300 focus:scale-75"
-          >
-            Login
-          </button>
+          {!isLoading ? (
+            <button
+              type="submit"
+              className="px-4 py-2 bg-white text-[#990000] rounded-md font-bold tracking-wider transition-all duration-300 focus:scale-75"
+            >
+              Login
+            </button>
+          ) : (
+            <Loading />
+          )}
         </form>
 
         <div className="text-white text-sm mt-10">
@@ -66,6 +112,15 @@ const LoginPage = () => {
           </Link>
         </div>
       </div>
+      {/* ALERT */}
+      <AlertSuccess
+        className={`${alertS ? "block" : "hidden"}`}
+        message={alertMessage}
+      />
+      <AlertFailed
+        className={`${alertF ? "block" : "hidden"}`}
+        message={alertMessage}
+      />
     </div>
   );
 };

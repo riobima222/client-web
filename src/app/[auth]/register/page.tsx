@@ -9,20 +9,51 @@ import { GiPadlock } from "react-icons/gi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { GrUserAdmin } from "react-icons/gr";
 import axios from "axios";
+import AlertSuccess from "@/components/every/alertSuccess";
+import { useState } from "react";
+import Loading from "@/components/every/loading";
+import AlertFailed from "@/components/every/alertFailed";
+import { useRouter } from "next/navigation";
 
-const LoginPage = () => {
+const RegisterPage = () => {
+  const {push} = useRouter();
+  const [alertS, setAlertS] = useState(false);
+  const [alertF, setAlertF] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const form = e.target as HTMLFormElement;
     const data = {
       username: form.username.value,
       email: form.email.value,
       password: form.password.value,
       admin: form.admin.value,
-    }
-    
+    };
+
     const response = await axios.post("/api/auth/register", data);
-    console.log(response);
+    if (response.data.status) {
+      setIsLoading(false);
+      setAlertS(true);
+      setTimeout(() => {
+        setAlertS(false);
+        push("/auth/login");
+      }, 2500);
+    } else {
+      setIsLoading(false);
+      setAlertF(true);
+      setTimeout(() => {
+        setAlertF(false);
+      }, 3000);
+    }
+    setAlertMessage(response.data.message);
+    setTimeout(() => {
+      setAlertMessage("");
+    }, 3000);
+    form.reset();
+    form.username.focus();
   };
 
   return (
@@ -47,6 +78,7 @@ const LoginPage = () => {
             <input
               type="text"
               placeholder="username"
+              required
               name="username"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
@@ -59,6 +91,7 @@ const LoginPage = () => {
             <input
               type="email"
               placeholder="email"
+              required
               name="email"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
@@ -71,6 +104,7 @@ const LoginPage = () => {
             <input
               type="password"
               placeholder="password"
+              required
               name="password"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
@@ -81,18 +115,23 @@ const LoginPage = () => {
               <GrUserAdmin className="text-lg" />
             </div>
             <input
-              type="text"
+              type="password"
               placeholder="admin secret"
+              required
               name="admin"
               className="focus:outline-none max-w-[17em] w-full text-sm bg-transparent text-white border-b-2 border-white"
             />
           </div>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-white text-[#990000] rounded-md font-bold tracking-wider transition-all duration-300 focus:scale-75"
-          >
-            Register
-          </button>
+          {!isLoading ? (
+            <button
+              type="submit"
+              className="px-4 py-2 bg-white text-[#990000] rounded-md font-bold tracking-wider transition-all duration-300 focus:scale-75"
+            >
+              Register
+            </button>
+          ) : (
+            <Loading />
+          )}
         </form>
 
         <div className="text-white text-sm mt-10">
@@ -105,7 +144,17 @@ const LoginPage = () => {
           </Link>
         </div>
       </div>
+
+      {/* ALERT */}
+      <AlertSuccess
+        className={`${alertS ? "block" : "hidden"}`}
+        message={alertMessage}
+      />
+      <AlertFailed
+        className={`${alertF ? "block" : "hidden"}`}
+        message={alertMessage}
+      />
     </div>
   );
 };
-export default LoginPage;
+export default RegisterPage;
