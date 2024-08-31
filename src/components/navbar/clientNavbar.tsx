@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -121,12 +122,13 @@ const ClientNavbar = ({
             dropLogin ? "opacity-100" : "opacity-0"
           } absolute transition-all duration-300 left-[-39.5px] top-[40px] pt-1 flex px-3 justify-center items-start h-[3em] w-[8em] z-10 bg-[#990000] text-sm text-white`}
         >
-          <Link
-            href="/auth/login"
+          <button
+            onClick={() => signIn()}
+            type="button"
             className="bg-white text-[#990000] font-bold w-full tracking-wider rounded-md px-2 py-1 hover:scale-90 transition duration-200"
           >
             Admin
-          </Link>
+          </button>
         </div>
       </div>
 
