@@ -5,7 +5,6 @@ import AlertSuccess from "@/components/every/alertSuccess";
 import Loading from "@/components/every/loading";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -50,6 +49,12 @@ const LoginPage = () => {
     }, 3000);
     form.reset();
     form.email.focus();
+  };
+
+  const handleRegister = () => {
+    push(
+      `/auth/register?returnUrl=${encodeURIComponent(window.location.pathname)}`
+    );
   };
 
   return (
@@ -104,12 +109,12 @@ const LoginPage = () => {
 
         <div className="text-white text-sm mt-10">
           {"Don't have any account ? register"}{" "}
-          <Link
-            href="/auth/register"
+          <span
+            onClick={handleRegister}
             className="text-gray-800 underline hover:no-underline font-bold"
           >
             here
-          </Link>
+          </span>
         </div>
       </div>
       {/* ALERT */}

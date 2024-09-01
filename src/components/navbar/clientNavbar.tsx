@@ -13,16 +13,11 @@ const ClientNavbar = ({
     scrollToKontak: () => void;
   };
 }) => {
-  const [dropLogin, setDropLogin] = useState<any>(false);
   const [menu, setMenu] = useState<boolean>(false);
 
-  const handleLoginButton = () => {
-    setDropLogin(!dropLogin);
-  };
-
   return (
-    <div className="relative min-h-[3em] flex items-center justify-between px-5 bg-[#990000]">
-      <div>
+    <div className="relative min-h-[3em] pt-2 flex items-center justify-between px-5 bg-white">
+      <div className="bg-[#990000] py-1 max-w-[8em] w-full flex justify-center items-center rounded-md">
         <Image
           src={"/images/logo.png"}
           alt="logo"
@@ -30,16 +25,11 @@ const ClientNavbar = ({
           height={60}
           className=""
         />
-        {/* {status && url ? (
-          <Image src={url} alt="logo" width={60} height={60} className="" />
-        ) : (
-          <div>Logo not found</div>
-        )} */}
       </div>
       <div className="hidden sm:block">
-        <ul className="flex gap-5 text-white text-sm">
+        <ul className="flex gap-5 text-[#990000] text-sm font-bold">
           <li>
-            <Link href="/" className="tracking-wider hover:font-bold">
+            <Link href="/" className="tracking-wider hover:font-normal">
               Home
             </Link>
           </li>
@@ -47,16 +37,32 @@ const ClientNavbar = ({
             <Link
               onClick={scroll.scrollToDaftarBuku}
               href="/"
-              className="tracking-wider hover:font-bold"
+              className="tracking-wider hover:font-normal"
             >
               Daftar buku
             </Link>
           </li>
+          <div className="dropdown dropdown-bottom">
+            <div tabIndex={0} role="button" className="hover:font-normal">
+              visi & misi
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Item 2</a>
+              </li>
+            </ul>
+          </div>
           <li>
             <Link
               onClick={scroll.scrollToKontak}
               href="/"
-              className="tracking-wider hover:font-bold"
+              className="tracking-wider hover:font-normal"
             >
               kontak
             </Link>
@@ -64,7 +70,7 @@ const ClientNavbar = ({
         </ul>
       </div>
 
-      <div className="--MENU-- absolute right-3 z-10 sm:hidden">
+      <div className="--MENU-- absolute right-3 z-20 sm:hidden">
         <div>
           <button onClick={() => setMenu((prev) => !prev)} className="relative">
             <div
@@ -111,33 +117,20 @@ const ClientNavbar = ({
 
       <div className="--LOGIN BUTTON-- relative hidden sm:block">
         <button
-          onClick={handleLoginButton}
+          onClick={() => signIn()}
           type="button"
-          className="text-[#990000] transition duration-200 border-[1px] border-white font-bold px-3 py-1 rounded-md bg-white hover:text-white hover:bg-[#990000]"
+          className="text-[#990000] transition duration-200 border-[1px] border-[#990000] font-bold px-3 py-1 rounded-md bg-white hover:text-white hover:bg-[#990000]"
         >
           Login
         </button>
-        <div
-          className={`${
-            dropLogin ? "opacity-100" : "opacity-0"
-          } absolute transition-all duration-300 left-[-39.5px] top-[40px] pt-1 flex px-3 justify-center items-start h-[3em] w-[8em] z-10 bg-[#990000] text-sm text-white`}
-        >
-          <button
-            onClick={() => signIn()}
-            type="button"
-            className="bg-white text-[#990000] font-bold w-full tracking-wider rounded-md px-2 py-1 hover:scale-90 transition duration-200"
-          >
-            Admin
-          </button>
-        </div>
       </div>
 
       <div
-        className={`--SIDEBAR absolute top-0 bg-[#990000] transition-all duration-300 h-[100vh] w-[50%] flex justify-center items-center ${
-          menu ? "right-0" : "right-[-50%]"
+        className={`--SIDEBAR absolute z-10 top-0 bg-[#990000] transition-all duration-300 h-[100vh] w-[70%] flex justify-start items-center ${
+          menu ? "right-0" : "right-[-70%]"
         }`}
       >
-        <div className="flex flex-col text-white justify-center items-center gap-16">
+        <div className="flex flex-col text-white justify-center items-start gap-16 ms-5">
           <span>Home</span>
           <span
             onClick={() => {
@@ -147,6 +140,22 @@ const ClientNavbar = ({
           >
             Daftar buku
           </span>
+          <div className="dropdown dropdown-bottom">
+            <div tabIndex={0} role="button" className="hover:font-normal">
+              visi & misi
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-44 p-2 shadow text-[#990000]"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Item 2</a>
+              </li>
+            </ul>
+          </div>
           <span
             onClick={() => {
               scroll.scrollToKontak();

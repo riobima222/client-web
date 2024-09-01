@@ -49,12 +49,14 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }, ref) => {
         <div className="--RIGHT-- w-full md:w-[38%] bg-[#990000] p-3 flex flex-col order-1 md:order-2 mb-5 md:mb-0 justify-center items-center text-white">
           <h1 className="mb-3 text-2xl font-bold">Ada pertanyaan ?</h1>
           <form className="--FORM-- max-w-[20em] w-full flex flex-col gap-1">
-            <Input name="email" type="email" placeholder="masukan email kamu" />
-            <span>Atau</span>
+            <label htmlFor="noHP" className="ms-2 font-bold text-sm">
+              No telp
+            </label>
             <Input
+              id="noHP"
               name="noHP"
               type="text"
-              placeholder="masukan nomer hp kamu"
+              placeholder="0812345...."
             />
             <textarea
               name="pesan"

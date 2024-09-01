@@ -1,31 +1,35 @@
-import Image from "next/image";
+import ImageSlider from "./imageSlider"
 
 const Hero = () => {
   return (
-    <div className="--HERO CONTAINER-- flex flex-col md:flex-row items-center justify-evenly h-full">
-      <div className="--LEFT CONTENT-- w-full md:w-[40%] order-2 md:order-1 md:px-0 px-4 mb-12 md:mb-0 flex flex-col gap-5">
-        <h1 className="text-3xl sm:text-5xl font-bold">Rumah jurnal</h1>
-        <p>
-          Rumah Jurnal UII Dalwa adalah sebuah platform berisi kumpulan
-          e-Journal yang terdapat di Universitas Islam Internasional Darullughah
-          Wadda wah. e-Journal di Rumah Jurnal UII Dalwa terdiri dari berbagai
-          bidang keilmuan seperti Bahasa dan Sastra Arab, Ekonomi, Manajemen
-          Pendidikan Islam, Studi Islam, Sejarah Peradaban Islam, Bimbingan dan
-          Konseling Islam, Komunikasi Penyiaran Islam, dan Hukum Islam
-        </p>
-        <button className="btn btn-outline btn-primary">Temukan jurnal</button>
+    <section className="pt-10">
+      <div className="container mx-auto px-4 py-12">
+        <div className="--CONTENT-- flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="--LEFT CONTENT-- w-full md:w-5/12 space-y-6 ">
+            <h1 className="text-3xl sm:text-5xl font-bold text-gray-800">
+              Pubmedia Journal Series
+            </h1>
+            <p className="text-gray-600">
+              Pubmedia Journal Series currently publishes 100+ peer-reviewed
+              journals, and 3 conference journals. Pubmedia Journal Series is
+              managed directly by the Indonesian Journal Publisher. Pubmedia Journal
+              Series is indexed by: Crossref, Dimensions, Google Scholar, Road
+            </p>
+            <button
+              type="button"
+              className="bg-[#990000] text-white font-semibold text-sm py-3 px-6 rounded-md hover:bg-[#7a0000] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#990000] focus:ring-opacity-50"
+            >
+              Temukan jurnal
+            </button>
+          </div>
+
+          <div className="--RIGHT CONTENT-- w-full md:w-7/12 h-[400px] md:h-[350px] flex items-center">
+            <ImageSlider />
+          </div>
+        </div>
       </div>
-      <div className="--RIGHT CONTENT-- w-full order-1 md:order-2 md:w-[40%] flex justify-center h-[280px] md:h-auto my-7 md:my-0">
-        <Image
-          src="/images/hero-image.png"
-          alt="hero-image"
-          width="450"
-          height="450"
-          className="w-[240px] h-[240px] md:h-auto md:w-auto"
-          priority={false}
-        />
-      </div>
-    </div>
+    </section>
   );
 };
+
 export default Hero;

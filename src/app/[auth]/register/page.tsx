@@ -13,7 +13,7 @@ import AlertSuccess from "@/components/every/alertSuccess";
 import { useState } from "react";
 import Loading from "@/components/every/loading";
 import AlertFailed from "@/components/every/alertFailed";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const RegisterPage = () => {
   const {push} = useRouter();
@@ -21,6 +21,7 @@ const RegisterPage = () => {
   const [alertF, setAlertF] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,11 +36,14 @@ const RegisterPage = () => {
 
     const response = await axios.post("/api/auth/register", data);
     if (response.data.status) {
+      const returnUrl = searchParams.get("returnUrl");
       setIsLoading(false);
       setAlertS(true);
       setTimeout(() => {
         setAlertS(false);
-        push("/auth/login");
+        if(returnUrl) {
+          push(returnUrl);
+        }
       }, 2500);
     } else {
       setIsLoading(false);
