@@ -8,14 +8,15 @@ import { useState } from "react";
 const ClientNavbar = ({
   scroll,
 }: {
-  scroll: {
-    scrollToDaftarBuku: () => void;
+  scroll?: {
+    scrollToDaftarBuku?: () => void;
     scrollToKontak: () => void;
   };
+  otherhome?: boolean;
 }) => {
   const [menu, setMenu] = useState<boolean>(false);
   const { data: session }: any = useSession();
-  const [profile, setProfile] = useState<boolean>(false);
+  // const [profile, setProfile] = useState<boolean>(false);
 
   return (
     <div className="relative min-h-[3em] pt-2 flex items-center justify-between px-5 bg-white">
@@ -36,15 +37,11 @@ const ClientNavbar = ({
             </Link>
           </li>
           <li>
-            <Link
-              onClick={scroll.scrollToDaftarBuku}
-              href="/"
-              className="tracking-wider hover:font-normal"
-            >
-              Daftar buku
+            <Link href="/profile" className="tracking-wider hover:font-normal">
+              Profile
             </Link>
           </li>
-          <div className="dropdown dropdown-bottom">
+          {/* <div className="dropdown dropdown-bottom">
             <div tabIndex={0} role="button" className="hover:font-normal">
               visi & misi
             </div>
@@ -59,15 +56,29 @@ const ClientNavbar = ({
                 <a>Item 2</a>
               </li>
             </ul>
-          </div>
+          </div> */}
           <li>
-            <Link
-              onClick={scroll.scrollToKontak}
-              href="/"
-              className="tracking-wider hover:font-normal"
-            >
-              kontak
+            <Link href="/" className="tracking-wider hover:font-normal">
+              Layanan
             </Link>
+          </li>
+          <li>
+            <Link href="/" className="tracking-wider hover:font-normal">
+              Kerjasama
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className="tracking-wider hover:font-normal">
+              Kegiatan
+            </Link>
+          </li>
+          <li>
+            <div
+              onClick={scroll?.scrollToKontak || (() => {})}
+              className="tracking-wider hover:font-normal hover:cursor-pointer"
+            >
+              Kontak
+            </div>
           </li>
         </ul>
       </div>
@@ -121,7 +132,7 @@ const ClientNavbar = ({
         {session ? (
           <div className="flex justify-center items-center gap-3">
             <div
-              onClick={() => setProfile((prev) => !prev)}
+              // onClick={() => setProfile((prev) => !prev)}
               className="relative hover:cursor-pointer"
             >
               <Image
@@ -131,13 +142,15 @@ const ClientNavbar = ({
                 height={40}
                 className="rounded-full"
               />
-              <div
+              {/* <div
                 className={`absolute bg-gray-300 px-3 py-1 rounded-sm -left-4 flex-justify-center ${
                   profile ? "block" : "hidden"
                 }`}
               >
-                <Link href="/dashboard/profile" className="text-sm">Profile</Link>
-              </div>
+                <Link href="/dashboard/profile" className="text-sm">
+                  Profile
+                </Link>
+              </div> */}
             </div>
             <button
               onClick={() => signOut()}
@@ -165,15 +178,11 @@ const ClientNavbar = ({
       >
         <div className="flex flex-col text-white justify-center items-start gap-16 ms-5">
           <span>Home</span>
-          <span
-            onClick={() => {
-              scroll.scrollToDaftarBuku();
-              setMenu(false);
-            }}
-          >
-            Daftar buku
-          </span>
-          <div className="dropdown dropdown-bottom">
+          <span>Profile</span>
+          <span>Layanan</span>
+          <span>Kerjasama</span>
+          <span>Kegiatan</span>
+          {/* <div className="dropdown dropdown-bottom">
             <div tabIndex={0} role="button" className="hover:font-normal">
               visi & misi
             </div>
@@ -188,10 +197,10 @@ const ClientNavbar = ({
                 <a>Item 2</a>
               </li>
             </ul>
-          </div>
+          </div> */}
           <span
             onClick={() => {
-              scroll.scrollToKontak();
+              scroll?.scrollToKontak();
               setMenu(false);
             }}
           >

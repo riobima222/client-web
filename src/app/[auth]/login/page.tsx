@@ -111,7 +111,7 @@ const LoginPage = () => {
           {"Don't have any account ? register"}{" "}
           <span
             onClick={handleRegister}
-            className="text-gray-800 underline hover:no-underline font-bold"
+            className="text-gray-800 underline hover:no-underline font-bold hover:cursor-pointer"
           >
             here
           </span>

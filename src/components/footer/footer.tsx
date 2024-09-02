@@ -5,7 +5,7 @@ import { Input } from "./input";
 import { forwardRef, RefObject } from "react";
 
 interface FooterProps {
-  kontakRef: React.RefObject<HTMLDivElement>;
+  kontakRef?: React.RefObject<HTMLDivElement>;
 }
 
 const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }, ref) => {

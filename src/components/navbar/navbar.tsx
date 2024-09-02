@@ -1,8 +1,7 @@
-import { getImage } from "@/utils/firebase/getImage";
 import ClientNavbar from "./clientNavbar";
 
 interface Props {
-  scroll: {
+  scroll?: {
     scrollToDaftarBuku: () => void;
     scrollToKontak: () => void;
   };
