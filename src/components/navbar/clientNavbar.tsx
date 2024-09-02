@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -14,6 +14,8 @@ const ClientNavbar = ({
   };
 }) => {
   const [menu, setMenu] = useState<boolean>(false);
+  const { data: session }: any = useSession();
+  const [profile, setProfile] = useState<boolean>(false);
 
   return (
     <div className="relative min-h-[3em] pt-2 flex items-center justify-between px-5 bg-white">
@@ -116,13 +118,44 @@ const ClientNavbar = ({
       </div>
 
       <div className="--LOGIN BUTTON-- relative hidden sm:block">
-        <button
-          onClick={() => signIn()}
-          type="button"
-          className="text-[#990000] transition duration-200 border-[1px] border-[#990000] font-bold px-3 py-1 rounded-md bg-white hover:text-white hover:bg-[#990000]"
-        >
-          Login
-        </button>
+        {session ? (
+          <div className="flex justify-center items-center gap-3">
+            <div
+              onClick={() => setProfile((prev) => !prev)}
+              className="relative hover:cursor-pointer"
+            >
+              <Image
+                src={session.user.image || "/images/profile.png"}
+                alt="logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div
+                className={`absolute bg-gray-300 px-3 py-1 rounded-sm -left-4 flex-justify-center ${
+                  profile ? "block" : "hidden"
+                }`}
+              >
+                <Link href="/dashboard/profile" className="text-sm">Profile</Link>
+              </div>
+            </div>
+            <button
+              onClick={() => signOut()}
+              type="button"
+              className="text-[#990000] transition duration-200 border-[1px] border-[#990000] font-bold px-3 py-1 rounded-md bg-white hover:text-white hover:bg-[#990000]"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => signIn()}
+            type="button"
+            className="text-[#990000] transition duration-200 border-[1px] border-[#990000] font-bold px-3 py-1 rounded-md bg-white hover:text-white hover:bg-[#990000]"
+          >
+            Login
+          </button>
+        )}
       </div>
 
       <div
@@ -165,6 +198,13 @@ const ClientNavbar = ({
             Kontak
           </span>
         </div>
+        <button
+          onClick={() => signIn()}
+          type="button"
+          className="absolute w-full bottom-1 text-[#990000] transition duration-200 border-[1px] border-[#990000] font-bold px-3 py-1 rounded-md bg-white focus:border-[#fff] focus:bg-[#990000] focus:text-white"
+        >
+          Login
+        </button>
       </div>
     </div>
   );
