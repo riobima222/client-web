@@ -18,13 +18,13 @@ const ProfilePage = () => {
   return (
     <div className="-PROFILE- overflow-x-hidden">
       <ClientNavbar scroll={{ scrollToKontak }} />
-      <div className="-HERO- px-0 sm:px-5 mt-5">
+      <div className="-HERO- px-0 sm:px-5 mt-5 pt-20">
         <div className="-IMAGE- flex pe-7 pb-7 justify-end items-end h-[13em] md:h-[17em] bg-[url('/images/banner.jpg')]">
           <h1 className="text-3xl text-white font-bold">Tentang kami</h1>
         </div>
       </div>
 
-      <div className="-ABOUT- px-3 sm:px-10">
+      <div className="-ABOUT- px-3 sm:px-10 mt-10">
         <h1 className="text-3xl font-bold text-[#780101] mt-3">
           Tentang Yayasan Sinergi Kawula Muda
         </h1>

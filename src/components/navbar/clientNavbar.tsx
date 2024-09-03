@@ -19,7 +19,7 @@ const ClientNavbar = ({
   // const [profile, setProfile] = useState<boolean>(false);
 
   return (
-    <div className="relative min-h-[3em] pt-2 flex items-center justify-between px-5 bg-white">
+    <div className="fixed z-50 top-0 left-0 right-0 min-h-[3em] pt-2 flex items-center justify-between px-5 bg-white">
       <div className="bg-[#990000] py-1 max-w-[8em] w-full flex justify-center items-center rounded-md">
         <Image
           src={"/images/logo.png"}

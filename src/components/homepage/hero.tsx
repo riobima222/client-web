@@ -1,8 +1,8 @@
-import ImageSlider from "./imageSlider"
+import ImageSlider from "./imageSlider";
 
 const Hero = () => {
   return (
-    <section className="pt-10">
+    <section className="pt-32">
       <div className="container mx-auto px-4 py-12">
         <div className="--CONTENT-- flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="--LEFT CONTENT-- w-full md:w-5/12 space-y-6 ">
@@ -12,8 +12,9 @@ const Hero = () => {
             <p className="text-gray-600">
               Pubmedia Journal Series currently publishes 100+ peer-reviewed
               journals, and 3 conference journals. Pubmedia Journal Series is
-              managed directly by the Indonesian Journal Publisher. Pubmedia Journal
-              Series is indexed by: Crossref, Dimensions, Google Scholar, Road
+              managed directly by the Indonesian Journal Publisher. Pubmedia
+              Journal Series is indexed by: Crossref, Dimensions, Google
+              Scholar, Road
             </p>
             <button
               type="button"
