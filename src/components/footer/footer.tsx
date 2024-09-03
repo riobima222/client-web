@@ -11,7 +11,7 @@ interface FooterProps {
 const Footer = forwardRef<HTMLDivElement, FooterProps>(({ kontakRef }, ref) => {
   return (
     <div ref={kontakRef} className="--FOOTER-- mt-10 px-4 mb-5">
-      <div className="--CONTENT-- flex flex-col md:flex-row justify-between border-2 border-[#990000] rounded-md p-4">
+      <div className="--CONTENT-- flex flex-col md:flex-row justify-between border-2 border-yellow-500 rounded-md p-4">
         <div className="--LEFT-- w-full md:w-[55%] flex order-2 md:order-1 items-center">
           <div className="--LEFT CONTENT-- flex flex-col gap-5">
             <AnimatedGradientHeading />

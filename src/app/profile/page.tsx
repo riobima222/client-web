@@ -19,15 +19,8 @@ const ProfilePage = () => {
     <div className="-PROFILE- overflow-x-hidden">
       <ClientNavbar scroll={{ scrollToKontak }} />
       <div className="-HERO- px-0 sm:px-5 mt-5">
-        <div className="-IMAGE-">
-          <Image
-            src={"/images/ben.jpg"}
-            alt="banner-image"
-            width={1200}
-            height={1200}
-            style={{ objectFit: "cover" }}
-            className="w-full"
-          />
+        <div className="-IMAGE- flex pe-7 pb-7 justify-end items-end h-[13em] md:h-[17em] bg-[url('/images/banner.jpg')]">
+          <h1 className="text-3xl text-white font-bold">Tentang kami</h1>
         </div>
       </div>
 
