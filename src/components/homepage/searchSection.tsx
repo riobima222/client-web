@@ -1,8 +1,19 @@
 const SearchSection = () => {
   return (
-    <div className="--SEARCH SECTION-- flex justify-center mt-10 px-4">
+    <div
+      className="--SEARCH SECTION-- flex justify-center mt-10 px-4"
+      data-aos="zoom-in-down"
+      data-aos-easing="ease-in"
+      data-aos-duration="800"
+    >
       <div className="--SEARCH CONTENT flex flex-col gap-3 sm:gap-0 sm:flex-row justify-between items-center max-w-[60em] w-full">
-        <div className="--FILTER-- flex gap-3 justify-start items-center">
+        <div
+          className="--FILTER-- flex gap-3 justify-start items-center"
+          data-aos="fade-up"
+          data-aos-easing="ease-in"
+          data-aos-duration="1200"
+          data-aos-delay="50"
+        >
           <span
             tabIndex={0}
             className="inline-block hover:cursor-pointer transition-all duration-300 focus:scale-90 bg-[#990000] text-white p-2 rounded-md"

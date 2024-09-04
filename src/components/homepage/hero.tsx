@@ -5,7 +5,12 @@ const Hero = () => {
     <section className="pt-32">
       <div className="container mx-auto px-4 py-12">
         <div className="--CONTENT-- flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="--LEFT CONTENT-- w-full md:w-5/12 space-y-6 ">
+          <div
+            className="--LEFT CONTENT-- w-full md:w-5/12 space-y-6"
+            data-aos="fade-up"
+            data-aos-easing="ease-in"
+            data-aos-duration="1200"
+          >
             <h1 className="text-3xl sm:text-5xl font-bold text-gray-800">
               Pubmedia Journal Series
             </h1>
@@ -24,7 +29,12 @@ const Hero = () => {
             </button>
           </div>
 
-          <div className="--RIGHT CONTENT-- w-full md:w-7/12 h-[400px] md:h-[350px] flex items-center">
+          <div
+            className="--RIGHT CONTENT-- w-full md:w-7/12 h-[400px] md:h-[350px] flex items-center"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1200"
+          >
             <ImageSlider />
           </div>
         </div>

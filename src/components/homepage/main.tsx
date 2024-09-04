@@ -35,7 +35,12 @@ const Main = () => {
         <Hero />
       </div>
 
-      <div className="--STATISTIC OVERVIEW-- flex justify-center">
+      <div
+        data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="1200"
+        className="--STATISTIC OVERVIEW-- flex justify-center"
+      >
         <div className="--CONTENT-- border-2 border-yellow-500 rounded-md max-w-[40em] w-full p-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div className="bg-[#990000] p-2 rounded-md">
             <h2 className="text-3xl text-white font-bold">110</h2>
@@ -99,7 +104,12 @@ const Main = () => {
           </div>
         )}
         <div className="--BOOK CONTENT--  min-h-[20em] flex justify-center mt-4">
-          <div className="max-w-[65em] w-full flex justify-center flex-wrap gap-2 sm:gap-5">
+          <div
+            className="max-w-[65em] w-full flex justify-center flex-wrap gap-2 sm:gap-5"
+            data-aos="zoom-in-down"
+            data-aos-easing="ease-in"
+            data-aos-duration="1100"
+          >
             <Book />
             <Book />
             <Book />

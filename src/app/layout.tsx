@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { AOSInit } from "@/lib/aos/init";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <AOSInit />
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
