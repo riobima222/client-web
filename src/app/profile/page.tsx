@@ -2,7 +2,6 @@
 
 import Footer from "@/components/footer/footer";
 import ClientNavbar from "@/components/navbar/clientNavbar";
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 

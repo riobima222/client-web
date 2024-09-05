@@ -58,17 +58,20 @@ const ClientNavbar = ({
             </ul>
           </div> */}
           <li>
-            <Link href="/" className="tracking-wider hover:font-normal">
+            <Link href="/layanan" className="tracking-wider hover:font-normal">
               Layanan
             </Link>
           </li>
           <li>
-            <Link href="/" className="tracking-wider hover:font-normal">
+            <Link
+              href="/kerjasama"
+              className="tracking-wider hover:font-normal"
+            >
               Kerjasama
             </Link>
           </li>
           <li>
-            <Link href="/" className="tracking-wider hover:font-normal">
+            <Link href="/kegiatan" className="tracking-wider hover:font-normal">
               Kegiatan
             </Link>
           </li>
@@ -177,11 +180,11 @@ const ClientNavbar = ({
         }`}
       >
         <div className="flex flex-col text-white justify-center items-start gap-16 ms-5">
-          <span>Home</span>
-          <span>Profile</span>
-          <span>Layanan</span>
-          <span>Kerjasama</span>
-          <span>Kegiatan</span>
+          <Link href="/">Home</Link>
+          <Link href="/profile">Profile</Link>
+          <Link href="/layanan">Layanan</Link>
+          <Link href="/kerjasama">Kerjasama</Link>
+          <Link href="/kegiatan">Kegiatan</Link>
           {/* <div className="dropdown dropdown-bottom">
             <div tabIndex={0} role="button" className="hover:font-normal">
               visi & misi
