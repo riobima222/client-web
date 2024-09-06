@@ -3,7 +3,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { adminLogin } from "@/lib/firebase/service";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 interface Credentials {
   email: string;
@@ -35,7 +35,10 @@ const authOption: NextAuthOptions = {
         };
         const admin: any = await adminLogin(data);
         if (admin) {
-          const checkPassword = await bcrypt.compare(password, admin.password || "");
+          const checkPassword = await bcrypt.compare(
+            password,
+            admin.password || ""
+          );
           if (checkPassword) {
             return admin;
           } else throw new Error("password salah");
@@ -60,8 +63,10 @@ const authOption: NextAuthOptions = {
       session.user.email = token.email || "";
       session.user.password = token.password || "";
       session.user.createdAt = token.createdAt || "";
-      const accessToken = jwt.sign(token, process.env.NEXTAUTH_SECRET || "", {algorithm: "HS256"});
-      session.accessToken = accessToken
+      const accessToken = jwt.sign(token, process.env.NEXTAUTH_SECRET || "", {
+        algorithm: "HS256",
+      });
+      session.token = accessToken;
       return session;
     },
   },

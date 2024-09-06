@@ -27,7 +27,6 @@ export const adminRegister = async (data: DataRegister) => {
       return true;
     }
   } catch (error) {
-    console.log("error dari firebase: ", error);
     return false;
   }
 };
@@ -43,6 +42,20 @@ export const adminLogin = async (data: DataLogin) => {
   if (admin) {
     return admin;
   } else {
+    return false;
+  }
+};
+
+// LAYANAN
+export const getAllLayanan = async () => {
+  try {
+    const snapshot = await getDocs(collection(db, "layanan-asisten-jurnal"));
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return data;
+  } catch (err) {
     return false;
   }
 };
