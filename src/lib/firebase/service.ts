@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "./init";
 import bcrypt from "bcrypt";
 import { DataLogin, DataRegister } from "./interface";
@@ -77,6 +77,16 @@ export const updateImageLayanan = async (data: {idLayanan: string, imageURL: str
     })
     return true;
   } catch (err) {
+    return false;
+  }
+}
+
+export const getDetailLayanan = async (idLayanan: string) => {
+  try {
+    const snapshot = await getDoc(doc(db, "layanan", idLayanan));
+    const data = snapshot.data();
+    return data;
+  } catch(err) {
     return false;
   }
 }

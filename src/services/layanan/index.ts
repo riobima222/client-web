@@ -11,4 +11,7 @@ export const Layanan = {
   updateImageLayanan(data: { idLayanan: string; imageURL: string }) {
     return instance.post("/api/layanan/updateimagelayanan", data);
   },
+  getDetailLayanan(idLayanan: string) {
+    return instance.get(`/api/layanan/detaillayanan/${idLayanan}`);
+  },
 };

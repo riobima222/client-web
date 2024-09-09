@@ -34,3 +34,12 @@
   color: transparent;
   animation: gradient 5s ease infinite;
 }
+
+ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+}

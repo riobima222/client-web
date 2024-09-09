@@ -11,12 +11,15 @@ import { IoIosAdd } from "react-icons/io";
 import { FaFileExcel } from "react-icons/fa";
 import { Layanan } from "@/services/layanan";
 import { FetchTriggerContext } from "@/context/fetchTrigger";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const LayananPage = () => {
   const kontakRef = useRef<HTMLDivElement>(null);
   const [layanan, setLayanan] = useState<any>(false);
   const { showModal, setShowModal }: any = useContext(ModalAppearContext);
-  const {fetchTrigger}: any = useContext(FetchTriggerContext)
+  const { fetchTrigger }: any = useContext(FetchTriggerContext);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchLayanan = async () => {
@@ -52,7 +55,9 @@ const LayananPage = () => {
           <div className="max-w-[65em] mx-auto flex">
             <div
               onClick={() => setShowModal(true)}
-              className="-BUTTON- flex items-center hover:cursor-pointer border-2 border-yellow-400 text-yellow-400 px-2 p-1 rounded-md hover:bg-yellow-400 hover:text-white"
+              className={`-BUTTON- flex items-center hover:cursor-pointer border-2 border-yellow-400 text-yellow-400 px-2 p-1 rounded-md hover:bg-yellow-400 hover:text-white ${
+                session ? "block" : "hidden"
+              }`}
             >
               <div>
                 <IoIosAdd className="text-2xl" />
@@ -80,14 +85,15 @@ const LayananPage = () => {
                   </div>
                   <div>
                     <h2 className="font-bold underline hover:no-underline hover:cursor-pointer hover:text-blue-400">
-                      {item.title}
+                      <Link href={`/layanan/${item.id}`}>{item.title}</Link>
                     </h2>
+                    <p className="text-sm text-gray-400">{item.ketSingkat}</p>
                     <div className="flex items-center justify-start mt-3">
                       <button
                         type="button"
                         className="px-5 py-2 bg-green-400 text-white rounded-md"
                       >
-                        Detail
+                        <Link href={`/layanan/${item.id}`}>Detail</Link>
                       </button>
                     </div>
                   </div>

@@ -4,4 +4,5 @@ export interface LayananInter {
   tagihan: string;
   keterangan: string;
   image: string;
+  ketSingkat: string;
 }
