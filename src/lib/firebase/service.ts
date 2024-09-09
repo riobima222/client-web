@@ -1,7 +1,8 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "./init";
 import bcrypt from "bcrypt";
 import { DataLogin, DataRegister } from "./interface";
+import { LayananInter } from "@/services/interface";
 
 // AUTHENTICATION
 export const adminRegister = async (data: DataRegister) => {
@@ -49,7 +50,7 @@ export const adminLogin = async (data: DataLogin) => {
 // LAYANAN
 export const getAllLayanan = async () => {
   try {
-    const snapshot = await getDocs(collection(db, "layanan-asisten-jurnal"));
+    const snapshot = await getDocs(collection(db, "layanan"));
     const data = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -59,3 +60,23 @@ export const getAllLayanan = async () => {
     return false;
   }
 };
+
+export const addLayanan = async (data: LayananInter) => {
+  try {
+    const docRef = await addDoc(collection(db, "layanan"), data);
+    return docRef.id;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const updateImageLayanan = async (data: {idLayanan: string, imageURL: string}) => {
+  try {
+    await updateDoc(doc(db, "layanan", data.idLayanan), {
+      image: data.imageURL
+    })
+    return true;
+  } catch (err) {
+    return false;
+  }
+}

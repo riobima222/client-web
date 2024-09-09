@@ -4,6 +4,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { AOSInit } from "@/lib/aos/init";
+import ModalAppearProvider from "@/context/modalAppear";
+import "react-quill/dist/quill.snow.css";
+import FetchTriggerProvider from "@/context/fetchTrigger";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,7 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <AOSInit />
-        <SessionProvider>{children}</SessionProvider>
+        <FetchTriggerProvider>
+          <ModalAppearProvider>
+            <SessionProvider>{children}</SessionProvider>
+          </ModalAppearProvider>
+        </FetchTriggerProvider>
       </body>
     </html>
   );
