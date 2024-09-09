@@ -16,16 +16,19 @@ import {
 import app from "@/lib/firebase/init";
 import { ModalAppearContext } from "@/context/modalAppear";
 import Image from "next/image";
+import Loading from "../every/loading";
 
 const TambahLayanan = () => {
   const [value, setValue] = useState<string>("");
   const { setFetchTrigger }: any = useContext(FetchTriggerContext);
   const { setShowModal }: any = useContext(ModalAppearContext);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const storage = getStorage(app);
 
   const handleAddLayanan = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const form: any = e.target as HTMLFormElement;
     const data = {
       title: form.title.value,
@@ -61,6 +64,7 @@ const TambahLayanan = () => {
                 imageURL,
               });
               if (response.data.status) {
+                setLoading(true);
                 setFetchTrigger((prev: any) => !prev);
                 setShowModal(false);
               } else {
@@ -114,12 +118,18 @@ const TambahLayanan = () => {
           <div className="flex justify-center gap-3">
             <label
               htmlFor="image"
-              className="text-sm text-gray-700 border-2 text-center p-2 rounded-md w-[10em] hover:cursor-pointer"
+              className="text-sm text-gray-700 border-2 text-center p-2 rounded-md w-[9em] hover:cursor-pointer"
             >
               masukan gambar disini, maximal <strong>1mb</strong>
             </label>
             {image && (
-              <Image src={image ? URL.createObjectURL(image) : ""} alt="" width={100} height={100} className="w-[10em]"/>
+              <Image
+                src={image ? URL.createObjectURL(image) : ""}
+                alt=""
+                width={100}
+                height={100}
+                className="w-[10em]"
+              />
             )}
           </div>
           <input
@@ -133,7 +143,13 @@ const TambahLayanan = () => {
             type="submit"
             className="text-sm border-2 border-[#990000] text-[#990000] hover:bg-[#990000] hover:text-white py-1 rounded-md"
           >
-            Tambah Layanan
+            {loading ? (
+              <div className="flex flex-col items-center justify-center gap-3">
+                <Loading color="text-yellow-400" />
+              </div>
+            ) : (
+              "Tambahkan Layanan"
+            )}
           </button>
         </form>
       </div>
