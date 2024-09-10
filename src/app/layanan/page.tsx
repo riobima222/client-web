@@ -25,6 +25,7 @@ const LayananPage = () => {
     const fetchLayanan = async () => {
       const response = await Layanan.getAllLayanan();
       if (response.data.status) {
+        console.log("Semua layanan",response);
         setLayanan(response.data.data);
       } else {
         console.log(response);

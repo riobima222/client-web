@@ -28,7 +28,7 @@ const DetailLayanan = ({ params }: { params: any }) => {
       };
       fetchDetailLayanan();
     }
-  }, []);
+  }, [params.idLayanan]);
   const scrollToKontak = () => {
     if (kontakRef.current) {
       kontakRef.current.scrollIntoView({ behavior: "smooth" });
